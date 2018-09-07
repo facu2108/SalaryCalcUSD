@@ -32,7 +32,8 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+	<!-- for the charts to work -->
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
 	<script src="Chart.min.js"></script>
 	<script src="utils.js"></script>
 	<script src="data/dates_pesos.js"></script>
@@ -290,7 +291,7 @@ Si tu sueldo era de $10.000 al 24 de Septiembre del 2016 [09/24/2016] y el 1 de 
 			<!--h4>Comentarios del autor</h4-->
           Gracias por usar esta herramienta! Espero que te sirva y de tener algún comentario quizá quieras leer primero algunas observaciones:
 		  <ul>
-                <li>Todo el código está disponible para ver y descargar en GitHub ()</li>
+                <li>Todo el código está disponible para ver y descargar en GitHub (https://github.com/facu2108/SalaryCalcUSD)</li>
 
                 <li>Esta aplicación se hizo en unas horas para uso interno, tiene errores y no valida la información que ingresas. No te recomiendo usarla si estas esperando encontrar un producto maduro.
 </li>
@@ -385,7 +386,7 @@ var config = {
 	},
 	options: {
 		title: {
-			text: 'Chart.js Time Scale'
+			text: 'Info'
 		},
 		tooltips: {
 			callbacks: {
@@ -460,8 +461,6 @@ document.getElementById('addDataset').addEventListener('click', function() {
 	window.myLine.update();
 });
 
-
-
 function updateConfigAsNewObject(chart) {
 		var date_input_1 = new Date(document.getElementById('da1').value);
 		chart.options = {
@@ -478,17 +477,7 @@ function updateConfigAsNewObject(chart) {
 	chart.update();
 }
 
-
-
-
 document.getElementById('reset').addEventListener('click', function() {
-	//config.data.datasets.splice(1, 1);
-	//window.myLine.update();
-  //var elem = document.querySelector('#canvas');
-  //elem.parentNode.removeChild(elem);
-  //document.getElementById('canvas').innerHTML = "";
-  //var ctx = document.getElementById('canvas').getContext('2d');
-  //window.myLine = new Chart(ctx, config);
   window.location.reload(false);
 });
 
@@ -498,71 +487,6 @@ function removeData(chart) {
         dataset.data.pop();
     });
     chart.update();
-}
-
-
-document.getElementById('SaveData').addEventListener('click', function() {
-	setCookie('da1',document.getElementById('da1').value,1000);
-	setCookie('da2',document.getElementById('da2').value,1000);
-	setCookie('da3',document.getElementById('da3').value,1000);
-	setCookie('da4',document.getElementById('da4').value,1000);
-	setCookie('da5',document.getElementById('da5').value,1000);
-	setCookie('da6',document.getElementById('da6').value,1000);
-
-	setCookie('va1',document.getElementById('va1').value,1000);
-	setCookie('va2',document.getElementById('va2').value,1000);
-	setCookie('va3',document.getElementById('va3').value,1000);
-	setCookie('va4',document.getElementById('va4').value,1000);
-	setCookie('va5',document.getElementById('va5').value,1000);
-	setCookie('va6',document.getElementById('va6').value,1000);
-	document.cookie = "da1=John Doe";
-
-});
-
-document.getElementById('RetriveData').addEventListener('click', function() {
-
-	document.getElementById('va1').value = getCookie('va1');
-	document.getElementById('va2').value = getCookie('va2');
-	document.getElementById('va3').value = getCookie('va3');
-	document.getElementById('va4').value = getCookie('va4');
-	document.getElementById('va5').value = getCookie('va5');
-	document.getElementById('va6').value = getCookie('va6');
-
-	document.getElementById('da1').value = getCookie('va1');
-	document.getElementById('da2').value = getCookie('va2');
-	document.getElementById('da3').value = getCookie('va3');
-	document.getElementById('da4').value = getCookie('va4');
-	document.getElementById('da5').value = getCookie('va5');
-	document.getElementById('da6').value = getCookie('va6');
-
-
-});
-
-
-
-function setCookie(name,value,days) {
-    var expires = "";
-    if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days*24*60*60*1000));
-        expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
-}
-
-function getCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0;i < ca.length;i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-    }
-    return null;
-}
-
-function eraseCookie(name) {
-    document.cookie = name+'=; Max-Age=-99999999;';
 }
 
 	</script>
